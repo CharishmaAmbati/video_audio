@@ -6,6 +6,6 @@ st.write("""
 Hello *world!*
 """)
 
-df = pd.DataFrame([1, 4, 6, 8])
+df = pd.DataFrame([1, 4, 6, 8, 10, 25, 1000])
 print(df)
 st.line_chart(df)

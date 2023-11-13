@@ -134,7 +134,7 @@ st.write("---")
 for edu, place in Education.items():
 
     st.write(f"{edu}")
-    st.write(f":grey[{place}]")
+    st.write(f":blue[{place}]")
 
 # --- Projects & Accomplishments ---
 st.write('\n')

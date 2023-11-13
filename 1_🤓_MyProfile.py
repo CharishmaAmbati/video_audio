@@ -1,21 +1,66 @@
 import streamlit as st
+from pathlib import Path
+from PIL import Image
 
 st.set_page_config(
     page_title="Charishma Ambati's Profile",
     page_icon="👋",
 )
 
-st.title("Charishma Ambati")
+st.title("My Profile")
 st.sidebar.success("Select a page above.")
 
-if "my_input" not in st.session_state:
-    st.session_state["my_input"] = ""
+current_dir = Path(__file__).parent if "__file__" in locals() else Path.cwd()
+resume_file =  current_dir / "assets" /"CV.pdf"
+profile_pic =  current_dir / "assets" /"photo.jpg"
 
-my_input = st.text_input("Input a text here", st.session_state["my_input"])
-submit = st.button("Submit")
-if submit:
-    st.session_state["my_input"] = my_input
-    st.write("You have entered: ", my_input)
+NAME = "Charishma Ambati"
+DESCRIPTION = """
+Results-driven Software Engineer 3+ years hands-on experience with a strong technical foundation in data science, computer science, machine learning, and artificial intelligence with expertise in Python and Java. Seeking opportunity as Machine Learning Engineer with a company I can grow with.
+
+"""
+EMAIL = "charishma.a610@gmail.com"
+SOCIAL_MEDIA = {
+    "LinkedIn": "https://www.linkedin.com/in/charishma-ambati-ba377513b/",
+    "GitHub": "https://github.com/CharishmaAmbati",
+}
+
+with open(resume_file, "rb") as pdf_file:
+    PDFbyte = pdf_file.read()
+profile_pic = Image.open(profile_pic)
+
+
+# --- HERO SECTION ---
+# col1, col2 = st.columns(2, gap="small")
+# with col1:
+#     st.image(profile_pic, width=230)
+
+# with col2:
+st.title(NAME)
+st.write(DESCRIPTION)
+st.download_button(
+    label=" 📄 Download Resume",
+    data=PDFbyte,
+    file_name=resume_file.name,
+    mime="application/octet-stream",
+)
+st.write("📫", EMAIL)
+
+
+# --- SOCIAL LINKS ---
+st.write('\n')
+cols = st.columns(len(SOCIAL_MEDIA))
+for index, (platform, link) in enumerate(SOCIAL_MEDIA.items()):
+    cols[index].write(f"[{platform}]({link})")
+
+# if "my_input" not in st.session_state:
+#     st.session_state["my_input"] = ""
+#
+# my_input = st.text_input("Input a text here", st.session_state["my_input"])
+# submit = st.button("Submit")
+# if submit:
+#     st.session_state["my_input"] = my_input
+#     st.write("You have entered: ", my_input)
 
 
 

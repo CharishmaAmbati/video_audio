@@ -1,5 +1,6 @@
 import streamlit as st
 from transformers import pipeline
+import altair as alt
 
 import pandas as pd
 
@@ -16,8 +17,22 @@ def load_view():
             temp  = (pd.DataFrame(model_outputs[0], columns = ["label", "score"])).sort_values(by = 'score', ascending = False)
             emotion = (temp.iloc[0].label)
 
-            st.write(f"Emotion: {emotion}")
-            st.bar_chart(temp, x = "label", y= "score", color = "#ffaa0088")
+            st.write(f"Emotion: {emotion.title()}")
+
+            features = temp['label'].values
+            features_importances = temp['score'].values
+
+            chart_data = pd.DataFrame()
+            chart_data['features'] = features
+            chart_data['feature_importance'] = features_importances
+
+            chart_v1 = alt.Chart(chart_data).mark_bar().encode(
+            x='features',
+            y='feature_importance').properties(
+                width=800,
+                height=300
+            )
+            st.write("", "", chart_v1)
         except Exception as e:
             st.error(f"Error loading image from URL: {e}")
 

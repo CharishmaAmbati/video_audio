@@ -1,5 +1,5 @@
 streamlit==1.11.0
 git+https://github.com/huggingface/transformers.git
-'transformers[torch]'
-'transformers[tf-cpu]'
-'transformers[flax]'
+tensorflow<2.15
+keras<2.15
+torch

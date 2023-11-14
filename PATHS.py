@@ -4,13 +4,13 @@ NAVBAR_PATHS = {
 
 }
 
-SETTINGS = {
-    'M1':'options',
+PROJECTS = {
+    'Emotion Detection':'emotionDetection',
     'M2':'configuration',
 
 }
 
 
 PROJECTS_DROPDOWN = {
-    "TryingDropDown":'options'
+    "TryingDropDown":'emotionDetection'
 }

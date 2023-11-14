@@ -2,7 +2,7 @@ import streamlit as st
 import base64
 from streamlit.components.v1 import html
 
-from PATHS import NAVBAR_PATHS, SETTINGS, PROJECTS_DROPDOWN
+from PATHS import NAVBAR_PATHS, PROJECTS, PROJECTS_DROPDOWN
 
 
 def inject_custom_css():
@@ -23,9 +23,9 @@ def navbar_component():
     for key, value in NAVBAR_PATHS.items():
         navbar_items += (f'<a class="navitem" href="/?nav={value}">{key}</a>')
 
-    settings_items = ''
-    for key, value in SETTINGS.items():
-        settings_items += (
+    projects_items = ''
+    for key, value in PROJECTS.items():
+        projects_items += (
             f'<a href="/?nav={value}" class="settingsNav">{key}</a>')
 
 
@@ -38,7 +38,7 @@ def navbar_component():
                     <button style = "position:fixed; left:165px; top:2px;" class="dropbtn" data-bs-toggle="dropdown" data-bs-auto-close="true">Projects
                     <i class="fa fa-caret-down"></i></button>
                     <div id="myDropdown" class="dropdown-content">
-                        {settings_items}
+                        {projects_items}
                     </div>
                 </div>
             </nav>
